@@ -148,7 +148,10 @@ class MBRPartitionEntry(AbstractPartition):
         "sectors_count": (0xC, 0x10, (None, None))
     }
 
-    TYPE = {0x07: "NTFS", 0x0B: "FAT32", 0x83: "Linux"}
+    TYPE = {0x07: "NTFS", 0x0B: "FAT32", 0x83: "Linux", 0x00: "Free", 0x01:
+            "IBM DOS2.0+", 0x02: "XENIX root", 0x03: "XENIX usr", 0x04:
+            "FAT16", 0xA8: "Apple UFS", 0xAB: "Apple OS X Boot", 0xAF:
+            "Apple HFS and HFS+", 0xEE: "EFI"}
 
     def __init__(self, vba_bin):
         super().__init__(self.code, vba_bin)
