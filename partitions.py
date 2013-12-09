@@ -3,7 +3,7 @@
 from struct import unpack
 
 
-class Partition(object):
+class AbstractPartition(object):
     """ Abstract class for parsing attribute list.  """
 
     def _unpack_2_hex(self, hex_tuple):
@@ -56,7 +56,7 @@ class Partition(object):
         return "0x%08X" % value
 
 
-class FAT32(Partition):
+class FAT32(AbstractPartition):
 
     vbr = {
         "bootloader": (0x00, 0x03, (None, None)),
