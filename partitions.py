@@ -6,8 +6,8 @@ class Partition:
     def _unpack_2_hex(self, hex_tuple):
         """ Convert the unpack tuple to a hex value. """
         result = 0x00
-        for hex in hex_tuple:
-            result = result << 8 | hex
+        for hex_number in hex_tuple:
+            result = result << 8 | hex_number
         return result
 
     def __init__(self, codes, bincode):
@@ -29,8 +29,8 @@ class Partition:
         """
         for attr in codes:
             (start, end, constraints) = codes[attr]
-            setattr(self, attr, bincode[start:end])
-
+            setattr(self, attr, unpack("<%iB" % (end - start),
+                                       bincode[start:end]))
 
     def __setattr__(self, name, value):
         self.__dict__.update({name: self._unpack_2_hex(value)})
